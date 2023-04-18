@@ -1,6 +1,7 @@
 export interface Recipient {
-  id: number;
+  id?: number;
   firstName: string;
   lastName: string;
   token: string;
+  isFriendOrFamily?: boolean;
 }

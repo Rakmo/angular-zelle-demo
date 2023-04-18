@@ -5,7 +5,7 @@
   cursor: pointer;
 }
 
-.recipient.reminder {
+.recipient.isFriendOrFamily {
   border-left: 5px solid green;
 }
 

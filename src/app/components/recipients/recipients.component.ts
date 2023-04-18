@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RECIPIENTS } from 'src/app/mock-recipients'; // mock-data
+
 import { Recipient } from 'src/app/Recipient'; // interface
+import { RecipientService } from 'src/app/services/recipient.service'; // mock service
 
 @Component({
   selector: 'app-recipients',
@@ -8,9 +9,39 @@ import { Recipient } from 'src/app/Recipient'; // interface
   styleUrls: ['./recipients.component.css'],
 })
 export class RecipientsComponent implements OnInit {
-  recipients: Recipient[] = RECIPIENTS;
+  recipients: Recipient[] = [];
 
-  constructor() {}
+  constructor(private recipientService: RecipientService) {}
 
-  ngOnInit(): void {}
+  // read / get operation
+  ngOnInit(): void {
+    this.recipientService
+      .getRecipients()
+      .subscribe((recipients) => (this.recipients = recipients));
+  }
+
+  // create operation
+  addRecipient(recipient: Recipient) {
+    this.recipientService
+      .addRecipient(recipient)
+      .subscribe((recipient) => this.recipients.push(recipient));
+  }
+
+  // update operation
+  toggleFriendFamilyFlag(recipient: Recipient) {
+    recipient.isFriendOrFamily = !recipient.isFriendOrFamily;
+    this.recipientService.toggleFriendFamilyFlag(recipient).subscribe();
+  }
+
+  // delete operation
+  deleteRecipient(recipient: Recipient) {
+    this.recipientService
+      .deleteRecipient(recipient)
+      .subscribe(
+        () =>
+          (this.recipients = this.recipients.filter(
+            (r) => r.id !== recipient.id
+          ))
+      );
+  }
 }

@@ -1,5 +1,9 @@
+<app-add-recipient (onAddRecipient)="addRecipient($event)"></app-add-recipient>
 <app-recipient-item
   *ngFor="let recipient of recipients"
   [recipient]="recipient"
+  (onDeleteRecipient)="deleteRecipient(recipient)"
+  (onToggleFriendFamilyMember)="toggleFriendFamilyFlag(recipient)"
+  (onAddRecipient)="addRecipient(recipient)"
 >
 </app-recipient-item>

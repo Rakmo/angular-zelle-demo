@@ -1,7 +1,15 @@
-<div class="recipient">
+<div
+  class="recipient"
+  [ngClass]="{ isFriendOrFamily: recipient?.isFriendOrFamily }"
+  (dblclick)="onToggleFriendFamilyFlag(recipient)"
+>
   <h3>
     {{ recipient?.firstName + " " + recipient?.lastName }}
-    <fa-icon [icon]="faTimes" [ngStyle]="{ color: 'maroon' }"></fa-icon>
+    <fa-icon
+      (click)="onDelete(recipient)"
+      [icon]="faTimes"
+      [ngStyle]="{ color: 'maroon' }"
+    ></fa-icon>
   </h3>
   <p>{{ recipient?.token }}</p>
 </div>
