@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
+This application demonstrates all the CRUD operations using Angular, Json-server (fake server) for adding a recipient for Zelle Transfer.
+NOTE: This doesn't contain any actual Zelle API integration.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
@@ -25,3 +28,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+Steps if you fork this:
+1. To start the local server: `npm run start-server` in one terminal window. Server should be started at http://localhost:5000/
+2. In another terminal window, run first: `ng build` and then `ng serve`. Application can be accessed at http://localhost:4200/
