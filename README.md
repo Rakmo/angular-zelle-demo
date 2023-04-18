@@ -29,7 +29,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## Steps if you fork this:
 
-Steps if you fork this:
 1. To start the local server: `npm run start-server` in one terminal window. Server should be started at http://localhost:5000/
 2. In another terminal window, run first: `ng build` and then `ng serve`. Application can be accessed at http://localhost:4200/
