@@ -29,6 +29,7 @@ export class RecipientsComponent implements OnInit {
 
   // update operation
   toggleFriendFamilyFlag(recipient: Recipient) {
+    console.log('recipient.comp.ts toggle');
     recipient.isFriendOrFamily = !recipient.isFriendOrFamily;
     this.recipientService.toggleFriendFamilyFlag(recipient).subscribe();
   }

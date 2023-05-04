@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  title: string = 'Zelle | Add Recipient';
+  title: string = 'Zelle | Recipients';
 
   showAddRecipient: boolean = false;
   subscription?: Subscription;

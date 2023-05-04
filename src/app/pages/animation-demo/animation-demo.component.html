@@ -1,0 +1,7 @@
+<div class="body-content">
+  <button (click)="toggle()">Toggle</button>
+  <div [@fadeInOut]="visible ? 'visible' : 'hidden'" class="box"></div>
+  <div [@flyInOut]="visible ? 'in' : 'out'" class="box"></div>
+  <div [@slideInOut]="visible ? 'in' : 'out'" class="box"></div>
+  <app-loading-demo></app-loading-demo>
+</div>

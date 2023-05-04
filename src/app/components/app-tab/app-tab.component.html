@@ -1,0 +1,31 @@
+<div class="tab-container">
+  <div class="tab-header">
+    <a
+      class="tab-button"
+      [ngClass]="{ active: activeTab === 1 }"
+      (click)="activeTab = 1"
+      routerLink="/"
+      routerLinkActive="active"
+      >Home</a
+    >
+    <a
+      class="tab-button"
+      [ngClass]="{ active: activeTab === 2 }"
+      (click)="activeTab = 2"
+      routerLink="/recipients"
+      routerLinkActive="active"
+      >Recipients</a
+    >
+    <a
+      class="tab-button"
+      [ngClass]="{ active: activeTab === 3 }"
+      (click)="activeTab = 3"
+      routerLink="/animation"
+      routerLinkActive="active"
+      >Animation</a
+    >
+  </div>
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

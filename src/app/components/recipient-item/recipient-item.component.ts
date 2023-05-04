@@ -24,6 +24,7 @@ export class RecipientItemComponent implements OnInit {
   }
 
   onToggleFriendFamilyFlag(recipient: Recipient | undefined): void {
+    console.log('recipient-item.comp.ts toggle');
     this.onToggleFriendFamilyMember.emit(recipient);
   }
 }

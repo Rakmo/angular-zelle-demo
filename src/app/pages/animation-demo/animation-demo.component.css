@@ -1,0 +1,11 @@
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  margin: 10px;
+  display: inline-block;
+}
+
+.body-content {
+  justify-content: center;
+}

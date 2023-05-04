@@ -1,47 +1,80 @@
-<form *ngIf="showAddRecipientForm" class="add-form" (ngSubmit)="onSubmit()">
+<form
+  [formGroup]="addRecipientForm"
+  *ngIf="showAddRecipientForm"
+  class="add-form"
+  (ngSubmit)="onSubmit()"
+>
   <div class="form-control">
     <label for="firstName">First Name*</label>
     <input
       type="text"
-      name="firstName"
+      formControlName="firstName"
       id="firstName"
       placeholder="eg. John"
-      [(ngModel)]="firstName"
       required
     />
-  </div>
-  <div class="form-control">
+    <div *ngIf="firstName?.touched && firstName?.invalid" class="error">
+      <span *ngIf="firstName?.errors?.['required']"
+        >First Name is required.</span
+      >
+      <span *ngIf="firstName?.errors?.['pattern']"
+        >First Name must contain only letters and spaces.</span
+      >
+    </div>
+
     <label for="lastName">Last Name*</label>
     <input
       type="text"
-      name="lastName"
+      formControlName="lastName"
       id="lastName"
       placeholder="eg. Doe"
-      [(ngModel)]="lastName"
       required
     />
-  </div>
-  <div class="form-control">
+    <div *ngIf="lastName?.touched && lastName?.invalid" class="error">
+      <span *ngIf="lastName?.errors?.['required']">Last Name is required.</span>
+      <span *ngIf="lastName?.errors?.['pattern']"
+        >Last Name must contain only letters and spaces.</span
+      >
+    </div>
+
     <label for="token">Email / Mobile Number*</label>
     <input
       type="text"
+      formControlName="token"
       name="token"
       id="token"
       placeholder="eg. 9998887777"
-      [(ngModel)]="token"
       required
     />
+    <div *ngIf="token?.touched && lastName?.invalid" class="error">
+      <span *ngIf="token?.errors?.['required']"
+        >Email/Mobile Number is required.</span
+      >
+      <span *ngIf="token?.errors?.['pattern']"
+        >Please enter valid email or mobile number.</span
+      >
+    </div>
+
+    <!-- <div class="form-control form-control-check">
+      <label for="isFriendOrFamily"
+        >Is this person a friend or a family member?
+      </label>
+      <input
+        type="checkbox"
+        name="isFriendOrFamily"
+        id="isFriendOrFamily"
+        [(ngModel)]="isFriendOrFamily"
+      />
+    </div> -->
   </div>
-  <div class="form-control form-control-check">
-    <label for="isFriendOrFamily"
-      >Is this person a friend or a family member?
-    </label>
-    <input
-      type="checkbox"
-      name="isFriendOrFamily"
-      id="isFriendOrFamily"
-      [(ngModel)]="isFriendOrFamily"
-    />
-  </div>
-  <input type="submit" value="Submit" class="btn btn-block" />
+  <button
+    type="submit"
+    [disabled]="addRecipientForm.invalid"
+    [ngClass]="{
+      'btn btn-block btn-disabled': addRecipientForm.invalid,
+      'btn btn-block': !addRecipientForm.invalid
+    }"
+  >
+    Submit
+  </button>
 </form>
