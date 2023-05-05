@@ -51,7 +51,8 @@
         >Email/Mobile Number is required.</span
       >
       <span *ngIf="token?.errors?.['pattern']"
-        >Please enter valid email or mobile number.</span
+        >Please enter valid email or mobile number eg. 9998887777 or
+        john@abc.com.</span
       >
     </div>
 
@@ -78,3 +79,9 @@
     Submit
   </button>
 </form>
+<app-loading-demo *ngIf="showLoading"></app-loading-demo>
+<app-recipient-added
+  [fullName]="fullName"
+  [token]="tokenToBeSent"
+  *ngIf="showChild"
+></app-recipient-added>

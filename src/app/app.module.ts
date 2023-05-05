@@ -17,6 +17,7 @@ import { ZelleRecipientComponent } from './pages/zelle-recipient/zelle-recipient
 import { AnimationDemoComponent } from './pages/animation-demo/animation-demo.component';
 import { AppTabComponent } from './components/app-tab/app-tab.component';
 import { LoadingDemoComponent } from './components/loading-demo/loading-demo.component';
+import { RecipientAddedComponent } from './components/recipient-added/recipient-added.component';
 
 const appRoutes: Routes = [
   {
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     AnimationDemoComponent,
     AppTabComponent,
     LoadingDemoComponent,
+    RecipientAddedComponent,
   ],
   imports: [
     BrowserModule,

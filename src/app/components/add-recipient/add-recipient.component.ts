@@ -1,13 +1,15 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Recipient } from 'src/app/Recipient';
-import { UiService } from 'src/app/services/ui.service';
 import {
   FormGroup,
   FormControl,
   Validators,
   FormBuilder,
 } from '@angular/forms';
+
+import { Recipient } from 'src/app/Recipient';
+import { UiService } from 'src/app/services/ui.service';
+import { formatPhoneNumber } from 'src/app/utilities/format-utils';
 
 @Component({
   selector: 'app-add-recipient',
@@ -16,8 +18,13 @@ import {
 })
 export class AddRecipientComponent implements OnInit {
   addRecipientForm!: FormGroup;
+  newRecipient: Recipient = { firstName: '', lastName: '', token: '' };
   showAddRecipientForm: boolean = false;
   subscription?: Subscription;
+  showLoading: boolean = false;
+  showChild: boolean = false;
+  fullName?: string = '';
+  tokenToBeSent?: string = '';
 
   @Output() onAddRecipient: EventEmitter<Recipient> = new EventEmitter();
 
@@ -35,7 +42,9 @@ export class AddRecipientComponent implements OnInit {
         '',
         [
           Validators.pattern(
-            /^(\d{10}|\d{3}-\d{3}-\d{4}|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+            /^(\d{10}|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/
+
+            // |\d{3}-\d{3}-\d{4} for 111-555-6666
           ),
         ],
       ],
@@ -43,21 +52,37 @@ export class AddRecipientComponent implements OnInit {
   }
 
   onSubmit() {
-    const newRecipient: Recipient = {
+    this.newRecipient = {
       firstName: this.firstName?.value,
       lastName: this.lastName?.value,
       token: this.token?.value,
     };
 
-    // trigger add recipient service
-    this.onAddRecipient.emit(newRecipient);
+    this.toggleAddRecipient();
 
-    this.subscription = this.uiService
-      .onToggle()
-      .subscribe((value) => (this.showAddRecipientForm = value));
+    this.showLoading = true;
+
+    this.fullName = `${this.firstName?.value} ${this.lastName?.value}`;
+    this.tokenToBeSent = `${formatPhoneNumber(this.token?.value)}`;
+
+    this.setFlagTrueWithDelay();
 
     // Reset form group fields
     this.addRecipientForm.reset();
+  }
+
+  toggleAddRecipient() {
+    this.uiService.toggleAddRecipient();
+  }
+
+  setFlagTrueWithDelay(): void {
+    setTimeout(() => {
+      this.showChild = true;
+      this.showLoading = false;
+
+      // trigger add recipient service
+      this.onAddRecipient.emit(this.newRecipient);
+    }, 3000);
   }
 
   get firstName() {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Recipient } from 'src/app/Recipient';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { formatPhoneNumber } from 'src/app/utilities/format-utils';
 
 @Component({
   selector: 'app-recipient-item',
@@ -26,5 +27,9 @@ export class RecipientItemComponent implements OnInit {
   onToggleFriendFamilyFlag(recipient: Recipient | undefined): void {
     console.log('recipient-item.comp.ts toggle');
     this.onToggleFriendFamilyMember.emit(recipient);
+  }
+
+  formatPhoneRef(text?: string): string {
+    return formatPhoneNumber(text);
   }
 }

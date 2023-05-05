@@ -1,0 +1,21 @@
+<div class="recipient-added" *ngIf="showAlert">
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>
+          <fa-icon
+            (click)="onDismiss()"
+            [icon]="faTimes"
+            [ngStyle]="{ color: 'black', 'padding-right': '10px' }"
+          ></fa-icon>
+        </td>
+        <td>
+          <span>
+            Recipient <b>{{ fullName }}</b> has been added successfully with
+            <b>{{ token }}</b>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

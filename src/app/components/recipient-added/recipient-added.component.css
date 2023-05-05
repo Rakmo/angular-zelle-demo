@@ -1,0 +1,14 @@
+.recipient-added {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.recipient-added.fade {
+  opacity: 0;
+}
