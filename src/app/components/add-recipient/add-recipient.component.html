@@ -46,7 +46,7 @@
       placeholder="eg. 9998887777"
       required
     />
-    <div *ngIf="token?.touched && lastName?.invalid" class="error">
+    <div *ngIf="token?.touched && token?.invalid" class="error">
       <span *ngIf="token?.errors?.['required']"
         >Email/Mobile Number is required.</span
       >
